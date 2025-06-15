@@ -1,0 +1,17 @@
+FROM node:20-bullseye
+
+# Set working directory inside container
+WORKDIR /app
+
+# Copy all files from local bundle
+COPY . /app
+
+# Install server dependencies
+WORKDIR /app/programs/server
+RUN npm install
+
+# Expose the port Meteor app will listen on
+EXPOSE 3000
+
+# Start the server
+CMD ["node", "main.js"]
